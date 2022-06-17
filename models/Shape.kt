@@ -43,6 +43,7 @@ enum class Shape(val frameCount: Int, val startPosition: Int) {
 
     Tetromino3(2, 1) {
         override fun getFrame(frameNumber: Int): Frame {
+
             return when (frameNumber) {
                 0 -> Frame(3)
                     .addRow("011")
