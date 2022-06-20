@@ -20,15 +20,17 @@ public class Block {
         this.frameNumber = 0;
         this.shapeIndex = shapeIndex;
         this.color = blockColor;
-        this.position = new Point(FieldConstants.COLUMN_COUNT.getValue()/2, 0);
+        this.position = new Point(FieldConstants.COLUMN_COUNT.getValue() / 2, 0);
     }
 
     public static Block createBlock() {
         Random random = new Random();
         int shapeIndex = random.nextInt(Shape.values().length);
-        BlockColor blockColor = BlockColor.values()[random.nextInt(BlockColor.values().length)];
+        BlockColor blockColor = BlockColor.values()
+                [random.nextInt(BlockColor.values().length)];
         Block block = new Block(shapeIndex, blockColor);
-        block.position.x = block.position.x - Shape.values()[shapeIndex].getStartPosition();
+        block.position.x = block.position.x - Shape.values()
+                [shapeIndex].getStartPosition();
         return block;
     }
 
@@ -47,41 +49,44 @@ public class Block {
         private final int rgbValue;
         private final byte byteValue;
     }
-    public static int getColor(byte value){
-        for (BlockColor colour : BlockColor.values()){
-            if (value == colour.byteValue){
+
+    public static int getColor(byte value) {
+        for (BlockColor colour : BlockColor.values()) {
+            if (value == colour.byteValue) {
                 return colour.rgbValue;
             }
         }
         return -1;
     }
 
-    public final void setState(int frame, Point position){
+    public final void setState(int frame, Point position) {
         this.frameNumber = frame;
         this.position = position;
     }
 
     @NotNull
-    public final byte[][] getShape(int frameNumber){
+    public final byte[][] getShape(int frameNumber) {
         return Shape.values()[shapeIndex].getFrame(frameNumber).as2dByteArray();
     }
-    public Point getPosition(){
+
+    public Point getPosition() {
         return this.position;
     }
 
-    public final int getFrameCount(){
+    public final int getFrameCount() {
         return Shape.values()[shapeIndex].getFrameCount();
     }
 
-    public int getFrameNumber(){
+    public int getFrameNumber() {
         return frameNumber;
     }
 
-    public int getColor(){
+    public int getColor() {
         return color.rgbValue;
     }
 
-    public byte getStaticValue(){
+    public byte getStaticValue() {
         return color.byteValue;
     }
 }
+

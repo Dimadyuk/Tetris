@@ -5,7 +5,6 @@ import com.example.tetris.constants.CellConstants
 import com.example.tetris.constants.FieldConstants
 import com.example.tetris.helpers.array2dOfByte
 import com.example.tetris.storage.AppPreferences
-import java.text.FieldPosition
 
 class AppModel {
 
@@ -104,10 +103,12 @@ class AppModel {
                         }
                     }
                 }
-
             }
             if (!moveValid(coordinate as Point, frameNumber)) {
-                translateBlock(currentBlock?.position as Point, currentBlock?.frameNumber as Int)
+                translateBlock(
+                    currentBlock?.position as Point,
+                    currentBlock?.frameNumber as Int
+                )
                 if (Motions.DOWN.name == action) {
                     boostScore()
                     persistCellData()
@@ -205,6 +206,7 @@ class AppModel {
     fun startGame() {
         if (!isGameActive()) {
             currentState = Statuses.ACTIVE.name
+            generateNextBlock()
         }
     }
 
